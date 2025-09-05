@@ -16,7 +16,7 @@
 *.lol
 
 # Arquivos de compilação PDF
-# *.pdf
+*.pdf
 
 # Arquivos de cache de pacotes (ex: minted)
 *.pyg
