@@ -1,0 +1,39 @@
+\subsection{ESPEON}
+Engajamento e Supervisão do Processo Educacional Online (ESPEON) é uma extensão desenvolvida para navegadores Google Chrome, com o objetivo de monitorar e coletar logs de atividade dos alunos durante aulas remotas. Por meio das permissões de leitura da atividade no navegador, declaradas na própria extensão, é possível capturar informações relevantes sobre a navegação do usuário. Esses dados são utilizados para análise do nível de atenção dos estudantes submetidos a aulas expositivas em ambiente remoto.
+
+A Tabela~\ref{tab:table2} apresenta as propriedades que compõem o \textit{payload} de atividade, essenciais para a parametrização e levantamento dos indicadores analisados nesta pesquisa.
+
+\begin{table}[ht]
+\centering
+\caption{\textit{Payload} para \textit{logs} de atividade}
+\label{tab:table2}
+\begin{tabular}{|l|l|p{8cm}|}
+\hline
+\textbf{PROPRIEDADE} & \textbf{TIPO} & \textbf{DESCRIÇÃO} \\
+\hline
+onlineClass  & string  & Url da aula remota \\
+\hline
+url          & string  & Url divergente da aula remota \\
+\hline
+title        & string  & Título da Url divergente \\
+\hline
+muted        & boolean & Verificador de estado de áudio da 
+guia \\
+\hline
+lastAccessed & Date    & Último acesso à guia \\
+\hline
+timestamp    & Date    & Data de emissão do log \\
+\hline
+event        & string  & Trigger causador da emissão do log \\
+\hline
+\end{tabular}
+\end{table}
+
+
+Com base nesse conteúdo, a extensão utiliza gatilhos — como a troca de abas e a minimização da guia (propriedade \textit{event} da Tabela~\ref{tab:table2}) — para registrar os \textit{logs} em um banco de dados não relacional. Posteriormente, esses dados serão processados no \textit{backend}, gerando relatórios de atenção e engajamento relacionados a cada aula monitorada.
+
+Enquanto esses mecanismos abordam a problemática da dispersão de foco, o engajamento é avaliado por meio da verificação de permissões de uso de microfone e câmera. Isso se deve ao fato de que um aluno pode manter a aba da aula em primeiro plano, mas realizar outras atividades paralelas, contornando os mecanismos de controle.
+
+A análise do uso desses periféricos permite estimar o grau de engajamento do aluno, uma vez que sua ativação sugere disposição para interação com o docente, seja para esclarecimento de dúvidas ou participação ativa durante a aula.
+
+É importante destacar que a extensão apenas verifica as permissões de acesso a microfone e câmera e a existência de \textit{streaming} de dados, sem coletar ou armazenar imagens dos alunos. Essa estratégia permite inferir o nível de engajamento sem infringir a privacidade dos usuários, diferentemente de abordagens que capturam e armazenam imagens faciais dos estudantes, como feito em Roy et al. (2021) ~\cite{roy2021students}. Dessa forma, o projeto garante maior segurança para todos os envolvidos e conformidade com a Lei Geral de Proteção de Dados (LGPD).
